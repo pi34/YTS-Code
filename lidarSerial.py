@@ -1,6 +1,5 @@
 from dis import dis
 import serial
-import time
 import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
@@ -23,25 +22,36 @@ decision = '1'
 
 try:
     def fetchData():
+
         global scanX
         global scanY
         global lidar
         global decision
+
         for scan in lidar.iter_scans():
+
             obstruction = 1e99
             ang = 370
+
             for (_, angle, distance) in scan:
+
                 if (angle <= 45 or angle >= 315):
+
                     #print("single:", angle, distance, obstruction)
+
                     if (distance <= obstruction):
+
                         obstruction = distance
                         ang = angle
                 
                     angle_value = float(angle) * 0.0174533
+
                     ox = distance * np.sin(angle_value)
                     oy = distance * np.cos(angle_value)
+
                     scanX.append(ox)
                     scanY.append(oy)
+
                     scanX = scanX[-length:]
                     scanY = scanY[-length:]
 
