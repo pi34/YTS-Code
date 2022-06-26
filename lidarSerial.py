@@ -16,7 +16,7 @@ length = 360*2
 scanX = [0] * length
 scanY = [0] * length
 
-arduino = serial.Serial(port='/dev/cu.usbmodem11101', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='/dev/cu.usbmodem1101', baudrate=115200, timeout=.1)
 
 decision = '1'
 
